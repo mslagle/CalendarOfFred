@@ -1,7 +1,20 @@
+using CalendarOfFred.Models;
+using CalendarOfFred.Repositories;
+using System.Text.Json.Serialization;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+builder.Services.AddScoped<IEventRepository, HardcodedEventRepository>();
+
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddControllers()
+    .AddJsonOptions(options =>
+    {
+        options.JsonSerializerOptions.Converters.Add(new DateOnlyJsonConverter());
+        options.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull;
+    });
+
 
 var app = builder.Build();
 
