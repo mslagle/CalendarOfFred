@@ -16,6 +16,9 @@ namespace CalendarOfFred.Models
         [JsonPropertyName("description")]
         public string? Description { get; set; }
 
+        [JsonPropertyName("url")]
+        public string? Url { get; set; }
+
         public Event(string Title, DateOnly Start, DateOnly? End = null)
         {
             this.Title = Title;

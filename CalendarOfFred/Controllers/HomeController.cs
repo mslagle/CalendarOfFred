@@ -18,7 +18,7 @@ namespace CalendarOfFred.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+        public IActionResult Holidays()
         {
             return View();
         }

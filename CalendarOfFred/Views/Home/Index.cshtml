@@ -6,26 +6,33 @@
 <script src='https://cdn.jsdelivr.net/npm/@@fullcalendar/moment@6.1.9/index.global.min.js'></script>
 <script>
 
-document.addEventListener('DOMContentLoaded', function() {
-  moment.updateLocale('en', { months: 'JanuFr3d_Fr3duary_SpringishKindaSortaMarchish_Аpr3d_MaFr3d_Fr3dune_NotJuly_Chipotl3_SeptembFr3d_ОctoooooobFr3d_NovembFr3d_DecembFr3d'.split( '_' )});
-  var DAY_NAMES = ['MondFr3d','TuesFr3d','WedFr3d','ThursFr3d','Fr3dday','SaturFr3d','SundFr3d']
-  
-  var calendarEl = document.getElementById('calendar');
-  var calendar = new FullCalendar.Calendar(calendarEl, {
-    locale: 'en',
-    timeZone: 'UTC',
-    initialView: 'dayGridMonth',
-    events: 'api/dates',
-    editable: true,
-    selectable: true,
-    titleFormat: 'MMMM YYYY',
-    dayHeaderContent: function(arg) {
-      return DAY_NAMES[arg.date.getDay()]
-    }, 
-  });
+    document.addEventListener('DOMContentLoaded', function () {
+        moment.updateLocale('en', { months: 'JanuFr3d_Fr3duary_SpringishKindaSortaMarchish_Аpr3d_MaFr3d_Fr3dune_NotJuly_Chipotl3_SeptembFr3d_ОctoooooobFr3d_NovembFr3d_DecembFr3d'.split('_') });
+        var DAY_NAMES = ['MondFr3d', 'TuesFr3d', 'WedFr3d', 'ThursFr3d', 'Fr3dday', 'SaturFr3d', 'SundFr3d']
 
-  calendar.render();
-});
+        var calendarEl = document.getElementById('calendar');
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+            locale: 'en',
+            timeZone: 'UTC',
+            initialView: 'dayGridMonth',
+            events: 'api/dates',
+            editable: true,
+            selectable: true,
+            titleFormat: 'MMMM YYYY',
+            dayHeaderContent: function (arg) {
+                return DAY_NAMES[arg.date.getDay()]
+            },
+            eventClick: function (info) {
+                info.jsEvent.preventDefault(); // don't let the browser navigate
+
+                if (info.event.url) {
+                    window.open(info.event.url);
+                }
+            }
+        });
+
+        calendar.render();
+    });
 </script>
 
 <div id='calendar'></div>
